@@ -155,30 +155,36 @@
   </div>
 
   <script>
-    function login() {
-      const username = document.getElementById('username').value.trim();
-      const password = document.getElementById('password').value.trim();
-      const error = document.getElementById('error');
+function login() {
+  const username = document.getElementById('username').value.trim();
+  const password = document.getElementById('password').value.trim();
+  const error = document.getElementById('error');
 
-      error.innerText = ''; // clear previous error
+  error.innerText = ''; // clear previous error
 
-      if (!username || !password) {
-        error.innerText = '⚠️ Please enter both username and password.';
-        return;
-      }
+  if (!username || !password) {
+    error.innerText = '⚠️ Please enter both username and password.';
+    return;
+  }
 
-      // For demo, hardcoding correct username/password
-      const correctUsername = 'student';
-      const correctPassword = 'password123';
+  if (username === '2403031461033') {
+    error.innerText = "⚠️ Error: Two devices can't login at the same time. Please logout from other device.";
+    return;
+  }
 
-      if (username === correctUsername && password === correctPassword) {
-        alert('Login successful! Welcome to Parul University.');
-        error.innerText = '';
-        // Redirect or further logic here
-      } else {
-        error.innerText = '⚠️ Wrong username or password. Please try again.';
-      }
-    }
+  // Your normal validation here (hardcoded example)
+  const correctUsername = 'student';
+  const correctPassword = 'password123';
+
+  if (username === correctUsername && password === correctPassword) {
+    alert('Login successful! Welcome to Parul University.');
+    error.innerText = '';
+    // Redirect or further logic here
+  } else {
+    error.innerText = '⚠️ Wrong username or password. Please try again.';
+  }
+}
+
   </script>
 </body>
 </html>
