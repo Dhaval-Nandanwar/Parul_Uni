@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Parul University Login</title>
   <style>
     body {
@@ -11,24 +11,52 @@
       display: flex;
       height: 100vh;
       flex-direction: row;
+      background-color: #f5f5f5;
     }
     .left {
       flex: 2;
-      background: <img src: "1.jpg">
+      height: 100vh;
+      background-image: url('1.jpg');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: 40px;
+      box-shadow: inset 0 0 100px rgba(0,0,0,0.5);
+    }
+    .left h1 {
+      font-size: 3rem;
+      margin: 0 0 10px;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    }
+    .left p {
+      max-width: 400px;
+      font-size: 1.2rem;
+      line-height: 1.5;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
     }
     .right {
       flex: 1;
-      padding: 40px;
+      padding: 40px 30px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+      box-shadow: -2px 0 10px rgba(0,0,0,0.1);
       background-color: #fff;
+      position: relative;
     }
     .right img {
       height: 80px;
       margin-bottom: 20px;
+    }
+    h2 {
+      margin-bottom: 30px;
+      color: #009688;
     }
     .form-group {
       width: 100%;
@@ -44,22 +72,37 @@
       margin-top: 5px;
       border: 1px solid #ccc;
       border-radius: 4px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+    input[type="text"]:focus, input[type="password"]:focus {
+      border-color: #009688;
+      outline: none;
     }
     button {
-      padding: 10px;
+      padding: 12px;
       width: 100%;
       background-color: #009688;
       color: white;
       border: none;
       border-radius: 4px;
+      font-size: 1.1rem;
       cursor: pointer;
+      transition: background-color 0.3s ease;
     }
     button:hover {
       background-color: #00796b;
     }
     .error {
       color: red;
-      margin-top: 10px;
+      margin-top: 15px;
+      font-weight: 600;
+    }
+    footer {
+      position: absolute;
+      bottom: 20px;
+      font-size: 0.9rem;
+      color: #666;
     }
 
     @media (max-width: 768px) {
@@ -69,37 +112,72 @@
       .left {
         flex: none;
         height: 200px;
-        background-position: center;
+        padding-left: 20px;
+        box-shadow: inset 0 0 50px rgba(0,0,0,0.5);
+      }
+      .left h1 {
+        font-size: 2rem;
       }
       .right {
         flex: none;
-        padding: 20px;
+        padding: 20px 15px;
         box-shadow: none;
+        position: static;
+      }
+      footer {
+        position: static;
+        margin-top: 20px;
+        text-align: center;
       }
     }
   </style>
 </head>
 <body>
-  <div class="left"></div>
+  <div class="left">
+    <h1>Parul University</h1>
+    <p>Empowering students with knowledge, innovation, and excellence since 2009.</p>
+  </div>
+
   <div class="right">
-    <img src="Untitled.jpg" alt="Parul University">
-    <h2>Parul University Login</h2>
+    <img src="Untitled.jpg" alt="Parul University Logo" />
+    <h2>Login to Your Account</h2>
     <div class="form-group">
       <label for="username">Username</label>
-      <input type="text" id="username" placeholder="Enter your username">
+      <input type="text" id="username" placeholder="Enter your username" />
     </div>
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" id="password" placeholder="Enter your password">
+      <input type="password" id="password" placeholder="Enter your password" />
     </div>
     <button onclick="login()">Login</button>
     <div class="error" id="error"></div>
+    <footer>© 2025 Parul University. All rights reserved.</footer>
   </div>
 
   <script>
     function login() {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
       const error = document.getElementById('error');
-      error.innerText = "⚠️ Error: Two devices can't login at the same time. Please logout from other device.";
+
+      error.innerText = ''; // clear previous error
+
+      if (!username || !password) {
+        error.innerText = '⚠️ Please enter both username and password.';
+        return;
+      }
+
+      // For demo, hardcoding correct username/password
+      const correctUsername = 'student';
+      const correctPassword = 'password123';
+
+      if (username === correctUsername && password === correctPassword) {
+        alert('Login successful! Welcome to Parul University.');
+        error.innerText = '';
+        // Redirect or further logic here
+      } else {
+        error.innerText = '⚠️ Wrong username or password. Please try again.';
+      }
     }
   </script>
 </body>
